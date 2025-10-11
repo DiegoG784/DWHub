@@ -1,9 +1,15 @@
+body {
+    image-rendering: pixelated;
+    font-family: MS Gothic;
+    background-color:rgb(12, 7, 39);
+}
+
 .flex {
-    display:flexbox;
+    display: flexbox;
 }
 
 .flex-column {
-    display: flex;
+    display: flexbox;
     flex-direction: column;
 
 }
@@ -17,12 +23,23 @@
     width: fit-content;
     max-width: 320px;
     height: fit-content;
-    background-color: cadetblue;
+    background-color:rgb(23, 12, 87);
+    color: white;
     padding: 15px;
     text-align: justify;
     margin: 5px;
+    border: 2px solid rgb(226, 112, 6);
+    border-right: 2px solid rgb(151, 44, 2);
+    border-bottom: 2px solid rgb(151, 44, 2);
 }
 
 .card-list {
     flex-wrap: wrap;
+}
+
+img {
+    border: 1px solid rgb(226, 193, 6);
+    border-right: 1px solid rgb(173, 86, 4);
+    border-bottom: 1px solid rgb(173, 86, 4);
+    background-color: rgb(36, 1, 1);
 }
