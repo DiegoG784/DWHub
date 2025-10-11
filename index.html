@@ -6,7 +6,7 @@
     </head>
     <script>
         window.onload = () => {
-            fetchDatabase('../assets/lesson_list.json').then(
+            fetchDatabase('./assets/lesson_list.json').then(
                 data => {
                     var card_template = document.getElementsByTagName('template')[0];
                     var raw_data = data;
