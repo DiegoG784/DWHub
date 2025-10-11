@@ -7,6 +7,11 @@ body {
     image-rendering: pixelated;
 }
 
+.header {
+    margin:5px;
+    background-color: antiquewhite;
+}
+
 .card-list {
     display: flex;
     margin: 10px;
