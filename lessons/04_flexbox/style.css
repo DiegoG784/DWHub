@@ -1,0 +1,28 @@
+.flex {
+    display:flexbox;
+}
+
+.flex-column {
+    display: flex;
+    flex-direction: column;
+
+}
+
+.flex-row {
+    display: flex;
+    flex-direction: row;
+}
+
+.card {
+    width: fit-content;
+    max-width: 320px;
+    height: fit-content;
+    background-color: cadetblue;
+    padding: 15px;
+    text-align: justify;
+    margin: 5px;
+}
+
+.card-list {
+    flex-wrap: wrap;
+}

@@ -1,0 +1,18 @@
+[
+    {
+        
+        "id": 0,
+        "date_created": "24/08/2025",
+        "title": "#02 - Site HTML",
+        "desc": "Um site simples para demonstração de funcionamento de alguns elementos HTML com o tema de Mega Man. E com um toque a mais de CSS. :)",
+        "url": "02_html"
+    },
+    {
+
+        "id": 1,
+        "date_created": "30/08/2025",
+        "title": "#04 - Flexbox",
+        "desc": "Demonstração simples com as propriedades flexbox",
+        "url": "04_flexbox"
+    }
+]

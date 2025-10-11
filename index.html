@@ -1,0 +1,62 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="styles/main.css">
+        <script src="js/utils/list_loader.js"></script>
+        <script src="js/styling/background_mover.js"></script>
+    </head>
+    <script>
+        window.onload = () => {
+            fetchDatabase('../assets/lesson_list.json').then(
+                data => {
+                    var card_template = document.getElementsByTagName('template')[0];
+                    var raw_data = data;
+
+                    for(let i = 0; i < data.length; i++) {
+                        var list = document.getElementById('card-list')
+                        var current_data = raw_data[i]
+                        var current_template = card_template.content.cloneNode(true)
+                        
+                        console.log(current_template)
+                        console.log(current_data)
+
+                        current_template.getElementById('card-template').style.display = 'flex'
+                        
+                        current_template.getElementById('card-link').href =  `lessons/${current_data.url}`
+                        current_template.getElementById('card-preview').src =  `lessons/${current_data.url}/preview.png`
+                        current_template.getElementById('card-title').innerHTML = current_data.title
+                        current_template.getElementById('card-date').innerHTML = current_data.date_created
+                        current_template.getElementById('card-desc').innerHTML = current_data.desc
+
+                        list.appendChild(current_template)
+
+                    }
+                }
+            )
+
+            setInterval(() => {moveBackground(document.body)}, 1500);
+
+        }
+
+        function loadPlaceholder(element) {
+            element.style.objectFit = "cover"
+            element.src = 'assets/missing_thumbnail.png'
+        }
+
+    </script>
+    <body>
+        <div class="card-list" id="card-list">
+            <template>
+                <a class="card-link" id="card-link">
+                    <div class="card border" id="card-template">
+                        <img src="/" id="card-preview" onerror="loadPlaceholder(this)">
+                        <div>
+                            <h4 id="card-title">Lesson title!</h4>
+                            <p class="card-date"><i id="card-date">00/00/0000</i></p>
+                            <p class="card-desc" id="card-desc">Lesson description!</p>
+                        </div>
+                    </div>
+                </a>
+            </template>
+        </div>
+    </body>
+</html>
