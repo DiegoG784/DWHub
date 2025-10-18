@@ -68,3 +68,7 @@ body {
     margin-bottom: 2px;
     font-size: smaller;
 }
+
+.force-font {
+    font-family: MS Gothic;
+}
