@@ -1,0 +1,78 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="../../styles/commons/styling.css">
+    </head>
+
+    <style>
+        .todo-task {
+
+        }
+
+        .lists-container {
+            width: 100%;
+        }
+
+
+    </style>
+
+    <script>
+        var taskId = 0;
+        function addTask() {
+            let taskInput = document.getElementById("task-input");
+            if (taskInput.value != "") {
+                let taskTemplate = document.getElementsByTagName('template')[0];
+                let currentTemplate = taskTemplate.content.cloneNode(true);
+    
+    
+                currentTemplate.getElementById("task-title").textContent = taskInput.value;
+                
+                document.getElementById("todo-list").appendChild(currentTemplate);
+                taskInput.value = "";
+            }
+            
+        }
+
+        function finishTask(element) {
+            let currentTask = element.parentNode.cloneNode(true);
+
+            document.getElementById("concluded-list").appendChild(currentTask);
+            element.parentNode.remove();
+        }
+
+        
+    </script>
+
+    <body>
+        <template>
+            <div class="todo-task flex flex-row">
+                <input type="checkbox" onclick="finishTask(this)">
+                <p id="task-title"></p>
+            </div>
+        </template>
+        <h2>Lista de Tarefas</h2>
+        <form>
+            <input type="text" id="task-input" placeholder="Tarefa a fazer...">
+            <input type="button" value="Adicionar Tarefa" onclick="addTask()">
+        </form>
+        <!-- <div class="todo-task flex flex-row">
+            <input type="checkbox">
+            <p>oksdoks</p>
+        </div> -->
+        
+        <div class="lists-container flex flex-row">
+            <div class="todo-list-container half-width">
+                <h3 class="full-width text-align-center">Á Fazer</h3>
+                <div id="todo-list" class="todo-list">
+                    
+                </div>
+            </div>
+            
+            <div class="concluded-list-container half-width">
+                <h3 class="full-width text-align-center">Concluidas</h3>
+                <div id="concluded-list" class="concluded-list">
+                    
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
