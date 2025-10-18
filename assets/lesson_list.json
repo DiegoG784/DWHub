@@ -1,6 +1,5 @@
 [
     {
-        
         "id": 0,
         "date_created": "24/08/2025",
         "title": "#02 - Site HTML",
@@ -8,11 +7,17 @@
         "url": "02_html"
     },
     {
-
         "id": 1,
         "date_created": "30/08/2025",
         "title": "#04 - Flexbox",
         "desc": "Demonstração simples com as propriedades flexbox",
         "url": "04_flexbox"
+    },
+    {
+        "id": 2,
+        "date_created": "11/10/2025",
+        "title": "#11 - Lista de tarefas com Javascript",
+        "desc": "Demonstração básica de funcionamento do Javascript com uma lista de tarefas.",
+        "url": "11_task-list"
     }
 ]
