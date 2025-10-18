@@ -1,22 +1,30 @@
 <html>
     <head>
         <link rel="stylesheet" href="../../styles/commons/styling.css">
+        <link rel="stylesheet" href="../../styles/main.css">
     </head>
 
     <style>
-        .todo-task {
-
+        body {
+            background-color: aliceblue;
+            background-image: none;
+            padding: 10px;
         }
 
         .lists-container {
             width: 100%;
         }
 
+        .text-dashed {
+            text-decoration:line-through;
+        }
 
+        .text-normal {
+            text-decoration: none;
+        }
     </style>
 
     <script>
-        var taskId = 0;
         function addTask() {
             let taskInput = document.getElementById("task-input");
             if (taskInput.value != "") {
@@ -32,37 +40,43 @@
             
         }
 
-        function finishTask(element) {
+        function checkTaskState(element) {
             let currentTask = element.parentNode.cloneNode(true);
+            let currentTaskButton = element;
 
-            document.getElementById("concluded-list").appendChild(currentTask);
+            console.log(currentTaskButton.checked)
+            switch (currentTaskButton.checked) {
+                case true:
+                    console.log("task ended!")
+                    document.getElementById("concluded-list").appendChild(currentTask);
+                    currentTask.classList.add('text-dashed');
+                    currentTask.classList.remove('text-normal');
+                    break;
+                case false:
+                    console.log("task not ended yet!")
+                    document.getElementById("todo-list").appendChild(currentTask);
+                    currentTask.classList.add('text-normal');
+                    currentTask.classList.remove('text-dashed');
+                    break;
+            }
             element.parentNode.remove();
-            currentTask.getElementById("task-button").addEventListener("click", undoTask, false);
+
         }
-
-        function undoTask(element) {
-            let currentTask = element.parentNode.cloneNode(true);
-
-            document.getElementById("todo-list").appendChild(currentTask);
-            currentTask.getElementById("task-button").addEventListener("click", finishTask, false);
-            element.parentNode.remove();
-        }
-
 
     </script>
 
     <body>
         <template>
             <div class="todo-task flex flex-row">
-                <input id="task-button" type="checkbox" onclick="finishTask(this)">
+                <input id="task-button" type="checkbox" onclick="checkTaskState(this)">
                 <p id="task-title"></p>
             </div>
         </template>
         <h2>Lista de Tarefas</h2>
-        <form>
-            <input type="text" id="task-input" placeholder="Tarefa a fazer...">
-            <input type="button" value="Adicionar Tarefa" onclick="addTask()">
-        </form>
+        <div>
+            <input type="text" class="force-font" id="task-input" placeholder="Tarefa a fazer...">
+            <input type="button" class="force-font" value="Adicionar Tarefa" onclick="addTask()">
+        </div>
         <!-- <div class="todo-task flex flex-row">
             <input type="checkbox">
             <p>oksdoks</p>
