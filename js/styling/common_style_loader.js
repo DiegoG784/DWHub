@@ -1,5 +1,3 @@
-var onGithubPages = false //Alters the href on the elements to the GitHub Pages one, since the code repositories are not stored in the root page, but in their own folders.
-
 function loadCommonStyler() {
     let commonStyleFiles = [
         'flex.css',
@@ -15,8 +13,8 @@ function loadCommonStyler() {
         // console.log(document.URL);
         let linkElement = document.createElement('link');
         linkElement.rel = 'stylesheet';
-        //TODO put auto github pages verifier based on document.URL
-        if (onGithubPages) {
+
+        if (!/127.0.0.1/.test(document.URL)) {
             linkElement.href = `/DWHub/${commonStyleFolder}${file}`;
         } else {
             linkElement.href = `/${commonStyleFolder}${file}`;
