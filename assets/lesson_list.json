@@ -19,5 +19,12 @@
         "title": "#11 - Lista de tarefas com Javascript",
         "desc": "Demonstração básica de funcionamento do Javascript com uma lista de tarefas.",
         "url": "11_task-list"
+    },
+    {
+        "id": 3,
+        "date_created": "11/10/2025",
+        "title": "#11-1 - Básicos do Javascript",
+        "desc": "Lista de exemplos básicos com a linguagem Javascript com sua manipulação de elementos HTML",
+        "url": "11-1_javascript-basics"
     }
 ]

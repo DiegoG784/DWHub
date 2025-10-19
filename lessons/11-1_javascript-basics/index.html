@@ -1,0 +1,43 @@
+<html>
+    <head>
+        <script src="../../js/styling/common_style_loader.js"></script>
+        <link rel="stylesheet" href="../../styles/main.css">
+    </head>
+    <style>
+        body {
+            background-image: none;
+        }
+    </style>
+    <script>
+        function changeText() {
+            document.getElementById('text').textContent = "Sim! E você?";
+        }
+
+        function changeFrameColor() {
+            document.getElementById('frame').style.backgroundColor = "#111122";
+        }
+
+        function sendText() {
+            document.getElementById('input-text').textContent = document.getElementById('text-field').value;
+        }
+    </script>
+    <body>
+        <div class="m-5 pl-10 frame mb-10">
+            <h3 class="mtb-10">Alterar texto á um clique</h3>
+            <button onclick="changeText()" class="force-font mtb-5">Aperte em mim para alterar o texto abaixo!</button>
+            <p id="text" class="mt-5 mb-10">Oi! Tudo bem com você?</p>
+        </div>
+        <div id="frame" class="m-5 pl-10 frame mb-10">
+            <h3 class="mtb-10">Alterar estilo CSS</h3>
+            <button onclick="changeFrameColor()" class="force-font mtb-10">Mude a cor deste frame clicando aqui!</button>
+        </div>
+        <div class="m-5 pl-10 frame mb-10">
+            <h3 class="mtb-10">Obtenção de valores da tag input</h3>
+            <div>
+                <input type="text" id="text-field" class="force-font" placeholder="Insira um texto aqui!">
+                <button class="force-font" onclick="sendText()">Enviar texto</button>
+            </div>
+            <p id="input-text" class="mt-5 mb-10"></p>
+        </div>
+    </body>
+</html>
