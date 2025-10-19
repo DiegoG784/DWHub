@@ -1,14 +1,15 @@
 <html>
     <head>
-        <link rel="stylesheet" href="../../styles/commons/styling.css">
+        <script src="../../js/styling/common_style_loader.js"></script>
+        <!-- <link rel="stylesheet" href="../../styles/commons/styling.css"> -->
         <link rel="stylesheet" href="../../styles/main.css">
     </head>
 
     <style>
         body {
-            background-color: aliceblue;
             background-image: none;
             padding: 10px;
+            color: white;
         }
 
         .lists-container {
@@ -21,6 +22,11 @@
 
         .text-normal {
             text-decoration: none;
+        }
+
+        .task-title {
+            inline-size:fit-content;
+            overflow-wrap: break-word;
         }
     </style>
 
@@ -47,13 +53,13 @@
             console.log(currentTaskButton.checked)
             switch (currentTaskButton.checked) {
                 case true:
-                    console.log("task ended!")
+                    console.log("task ended!");
                     document.getElementById("concluded-list").appendChild(currentTask);
                     currentTask.classList.add('text-dashed');
                     currentTask.classList.remove('text-normal');
                     break;
                 case false:
-                    console.log("task not ended yet!")
+                    console.log("task not ended yet!");
                     document.getElementById("todo-list").appendChild(currentTask);
                     currentTask.classList.add('text-normal');
                     currentTask.classList.remove('text-dashed');
@@ -67,13 +73,13 @@
 
     <body>
         <template>
-            <div class="todo-task flex flex-row">
+            <div class="todo-task flex flex-row frame p-5 width-fit m-10">
                 <input id="task-button" type="checkbox" onclick="checkTaskState(this)">
-                <p id="task-title"></p>
+                <p id="task-title" class="task-title no-margin"></p>
             </div>
         </template>
-        <h2>Lista de Tarefas</h2>
-        <div>
+        <h2 class="frame p-10 text-align-center">Lista de Tarefas</h2>
+        <div class="frame width-fit p-5">
             <input type="text" class="force-font" id="task-input" placeholder="Tarefa a fazer...">
             <input type="button" class="force-font" value="Adicionar Tarefa" onclick="addTask()">
         </div>
@@ -83,16 +89,16 @@
         </div> -->
         
         <div class="lists-container flex flex-row">
-            <div class="todo-list-container half-width">
-                <h3 class="full-width text-align-center">Á Fazer</h3>
-                <div id="todo-list" class="todo-list">
+            <div class="todo-list-container half-width mr-10">
+                <h3 class="full-width text-align-center frame ptb-5">Á Fazer</h3>
+                <div id="todo-list" class="todo-list m-5">
                     
                 </div>
             </div>
             
             <div class="concluded-list-container half-width">
-                <h3 class="full-width text-align-center">Concluidas</h3>
-                <div id="concluded-list" class="concluded-list">
+                <h3 class="full-width text-align-center frame ptb-5">Concluidas</h3>
+                <div id="concluded-list" class="concluded-list m-5">
                     
                 </div>
             </div>
