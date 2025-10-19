@@ -1,27 +1,18 @@
-.flex {
-    display: flex;
+.text-align-center {text-align: center;}
+
+.frame {
+    background-color:rgb(23, 12, 87);
+    border: 2px solid rgb(226, 112, 6);
+    border-right: 2px solid rgb(151, 44, 2);
+    border-bottom: 2px solid rgb(151, 44, 2);
 }
 
-.flex-row {
-    flex-direction: row;
+.force-font {
+    font-family: MS Gothic;
 }
 
-.flex-column {
-    flex-direction: column;
-}
-
-.m-1 {
-    margin: 1px;
-}
-
-.full-width {
-    width: 100%;
-}
-
-.half-width {
-    width: 50%;
-}
-
-.text-align-center {
-    text-align: center;
+.border {
+    border: 2px solid rgb(226, 112, 6);
+    border-right: 2px solid rgb(151, 44, 2);
+    border-bottom: 2px solid rgb(151, 44, 2);
 }

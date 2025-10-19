@@ -1,0 +1,57 @@
+.no-margin {margin: 0px;}
+
+.m-1 {margin: 1px;}
+
+.m-5 {margin: 5px;}
+
+.m-10 {margin: 10px;}
+
+/* Top */
+
+/*    */
+
+
+/* Bottom */
+
+.mb-5 {margin-bottom: 5px;}
+
+.mb-10 {margin-bottom: 10px;}
+
+/*        */
+
+
+/* Left */
+
+.ml-5 {margin-left: 5px;}
+
+.ml-10 {margin-left: 10px;}
+
+/*      */
+
+/* Right */
+
+.mr-5 {margin-right: 5px;}
+
+.mr-10 {margin-right: 10px;}
+
+/*       */
+
+
+
+/* Top-Bottom */
+
+.mtb-5 {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.mtb-10 {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+/*            */
+
+/* Lert-Right */
+
+/*            */

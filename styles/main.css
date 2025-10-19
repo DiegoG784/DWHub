@@ -5,6 +5,7 @@ body {
     background-image: url('../assets/star-background.gif');
     background-size: 64px;
     image-rendering: pixelated;
+    background-color:rgb(12, 7, 39);
 }
 
 .header {
@@ -69,6 +70,3 @@ body {
     font-size: smaller;
 }
 
-.force-font {
-    font-family: MS Gothic;
-}
