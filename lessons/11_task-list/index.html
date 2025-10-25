@@ -28,22 +28,74 @@
             inline-size:fit-content;
             overflow-wrap: break-word;
         }
+
+        .hidden {
+            display: none;
+        }
+
+        .show {
+            display: block;
+        }
     </style>
 
     <script>
+        var existentTasksCounter = 0;
+        var concludedTasksCounter = 0;
+        var taskIdCounter = 0;
+        var taskCounter = 0;
+        var existentTasksCounterDisplay
+        var concludedTasksCounterDisplay
+        var taskCategoryList
+
+        window.onload = () => {
+            existentTasksCounterDisplay = document.getElementById('existent_tasks');
+            concludedTasksCounterDisplay = document.getElementById('concluded_tasks');
+            taskCategoryList = document.getElementById('task-category-list');
+        }
+
         function addTask() {
             let taskInput = document.getElementById("task-input");
-            if (taskInput.value != "") {
+            let taskCategoryInput = document.getElementById("category-input");
+            
+            if (taskInput.value != "" && taskCounter != 10) {
                 let taskTemplate = document.getElementsByTagName('template')[0];
+                let categoryOption = document.createElement('option');
                 let currentTemplate = taskTemplate.content.cloneNode(true);
-    
-    
+
+                taskIdCounter++;
+                let newTaskId = `task_${taskIdCounter}`
+                currentTemplate.getElementById('task-id').id = newTaskId;
+
+                if (taskCategoryInput.value != "") {
+                    categoryOption.value = taskCategoryInput.value;
+                    categoryOption.textContent = taskCategoryInput.value;
+                    taskCategoryList.appendChild(categoryOption);
+                    currentTemplate.getElementById(newTaskId).classList.add(taskCategoryInput.value);
+                }
+
+                
+                existentTasksCounter++;
                 currentTemplate.getElementById("task-title").textContent = taskInput.value;
                 
-                document.getElementById("todo-list").appendChild(currentTemplate);
+                
+                let newNode = document.getElementById("todo-list").appendChild(currentTemplate);
+
                 taskInput.value = "";
+                taskCategoryInput.value = "";
+                existentTasksCounterDisplay.textContent = existentTasksCounter;
+                taskCounter++;
             }
             
+        }
+
+        function addTaskOnEnter() {
+            if (event.keyCode == 13) {
+                addTask();
+            }
+        }
+
+        function addClass(element, className) {
+            element.classList.add(className)
         }
 
         function checkTaskState(element) {
@@ -55,33 +107,93 @@
                 case true:
                     console.log("task ended!");
                     document.getElementById("concluded-list").appendChild(currentTask);
+                    
                     currentTask.classList.add('text-dashed');
                     currentTask.classList.remove('text-normal');
+                    
+                    concludedTasksCounter++;
+                    existentTasksCounter--;
+                    
+                    updateCounters();
                     break;
                 case false:
                     console.log("task not ended yet!");
                     document.getElementById("todo-list").appendChild(currentTask);
+                    
                     currentTask.classList.add('text-normal');
                     currentTask.classList.remove('text-dashed');
+                    
+                    concludedTasksCounter--;
+                    existentTasksCounter++;
+                    
+                    updateCounters();
                     break;
             }
             element.parentNode.remove();
 
         }
 
+        function updateCounters() {
+            existentTasksCounterDisplay.textContent = existentTasksCounter;
+            concludedTasksCounterDisplay.textContent = concludedTasksCounter;
+        }
+
+        function filterTasksByCategory() {
+            let categoryListElement = document.getElementById('task-category-list');
+            console.log(categoryListElement.value);
+            let todoTasks = document.getElementsByClassName('todo-task');
+            if (categoryListElement.value != 'none') {
+                for (let task of todoTasks) {
+                    if (!task.classList.contains(categoryListElement.value)) {
+                        changeVisibility(task, true);
+                    } else {
+                        changeVisibility(task, false);
+                    }
+                }
+            } else {
+                for (let task of todoTasks) {
+                    task.style.display = 'flex'
+                }
+            }
+        }
+
+        function changeVisibility(element, hidden) {
+            switch (hidden) {
+                case true:
+                    element.style.display = 'none'
+                    break;
+                case false:
+                    element.style.display = 'flex'
+                    break;
+            }
+        }
     </script>
 
     <body>
         <template>
-            <div class="todo-task flex flex-row frame p-5 width-fit m-10">
+            <div id="task-id" class="todo-task flex flex-row frame p-5 width-fit m-10">
                 <input id="task-button" type="checkbox" onclick="checkTaskState(this)">
                 <p id="task-title" class="task-title no-margin"></p>
             </div>
         </template>
         <h2 class="frame p-10 text-align-center">Lista de Tarefas</h2>
-        <div class="frame width-fit p-5">
-            <input type="text" class="force-font" id="task-input" placeholder="Tarefa a fazer...">
-            <input type="button" class="force-font" value="Adicionar Tarefa" onclick="addTask()">
+        <div class="frame width-fit p-5 mb-5">
+            <div class="mb-5">
+                <input type="text" class="force-font" id="task-input" placeholder="Tarefa a fazer..." onkeyup="addTaskOnEnter()">
+                <input type="button" class="force-font" value="Adicionar Tarefa" onclick="addTask()">
+            </div>
+            <input type="text" id="category-input" class="force-font" placeholder="Categoria da tarefa" onkeyup="addTaskOnEnter()">
+        </div>
+        <div class="frame width-fit p-5 mt-10">
+            <p class="mb-10 mt-5">Tarefas a fazer: <span id="existent_tasks">0</span></p>
+            <p class="mb-5">Tarefas Concluidas: <span id="concluded_tasks">0</span></p>
+        </div>
+        <div class="frame width-fit p-5 mt-10">
+            <p class="mb-10 mt-5">Filtrar Tarefas</p>
+            <label for="tarefa">Categoria:</label>
+            <select name="task-category-list" id="task-category-list" onchange="filterTasksByCategory()">
+                <option id="list-task-none" value="none" selected="selected">Nenhum</option>
+            </select>
         </div>
         <!-- <div class="todo-task flex flex-row">
             <input type="checkbox">
