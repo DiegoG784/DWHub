@@ -1,7 +1,20 @@
-.full-width {width: 100%;}
+/* Width */
 
 .half-width {width: 50%;}
 
+.full-width {width: 100%;}
+
 .width-fit {width: fit-content;}
 
+/*       */
+
+
+/* Height */
+
+.half-height {height: 50%;}
+
+.full-height {height: 100%;}
+
 .height-fit {height: fit-content;}
+
+/* Height */
