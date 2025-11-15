@@ -2,27 +2,30 @@
 <html>
     <head>
         <link rel="stylesheet" href="styles/main.css">
-        <script src="js/utils/list_loader.js"></script>
-        <script src="js/styling/background_mover.js"></script>
-        <script src="js/styling/common_style_loader.js"></script>
+        <script src="js/utils/list_loader.js"></script> //Loader de arquivos locais do diretório do site
+        <script src="js/styling/background_mover.js"></script> //Estilizador de fundo
+        <script src="js/styling/common_style_loader.js"></script> //Framework criada específicamente para o design do portfólio
     </head>
     <script>
         window.onload = () => {
             fetchDatabase('assets/lesson_list.json').then(
                 data => {
+                    //Seleciona o elemento <template> com o modelo do cartão
                     var card_template = document.getElementsByTagName('template')[0];
-                    var raw_data = data;
+                    var raw_data = data; //atribui a lista de exercícios que foram pegas no json para a variável
 
                     for(let i = 0; i < data.length; i++) {
                         var list = document.getElementById('card-list')
                         var current_data = raw_data[i]
+
+                        //cria uma instância única do card para colocar o conteúdo da lição dentro dele
                         var current_template = card_template.content.cloneNode(true)
                         
                         console.log(current_template)
                         console.log(current_data)
 
+                        //coloca todos os dados da lista de lição atual iterada dentro do elemento do card
                         current_template.getElementById('card-template').style.display = 'flex'
-                        
                         current_template.getElementById('card-link').href =  `lessons/${current_data.url}`
                         current_template.getElementById('card-preview').src =  `lessons/${current_data.url}/preview.png`
                         current_template.getElementById('card-title').innerHTML = current_data.title
@@ -34,11 +37,13 @@
                     }
                 }
             )
-
+            
+            //função do background_mover.js atribuida dentro de uma setInterval, um método que chama periodicamente uma função em um determinado tempo definido
             setInterval(() => {moveBackground(document.body)}, 1500);
 
         }
 
+        //Função que carrega uma imagem placebo caso a atual dê erros ao carregar. Utilizado dentro da thumbnail do card caso não possua uma imagem dentro da lição que será usado como thumbnail
         function loadPlaceholder(element) {
             element.style.objectFit = "cover"
             element.src = 'assets/missing_thumbnail.png'
@@ -49,8 +54,9 @@
         <div class="header frame m-5">
             <h4 class="mtb-10 ml-10">DWHub</h4>
         </div>
-        <div class="card-list" id="card-list">
-            <template>
+        <div class="card-list" id="card-list"> <!-- <div> onde todos os cards da lista ficarão -->
+
+            <template> <!-- Modelo de card -->
                 <a class="card-link" id="card-link">
                     <div class="card border" id="card-template">
                         <img src="/" id="card-preview" onerror="loadPlaceholder(this)">
@@ -62,6 +68,7 @@
                     </div>
                 </a>
             </template>
+
         </div>
     </body>
 </html>
